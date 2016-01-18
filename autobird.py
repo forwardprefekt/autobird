@@ -20,7 +20,7 @@ while(True):
     if (x > 5):
 	x = 0 
     	#rects = toppipe.detectMultiScale(gray, 1.3, 4, cv2.cv.CV_HAAR_SCALE_IMAGE, (20,20))
-    	rects = toppipe.detectMultiScale(gray, 1.3, 5)
+    	rects = toppipe.detectMultiScale(gray, 1.3, 4, cv2.cv.CV_HAAR_SCALE_IMAGE, (20,20))
 	for (x,y,w,h) in rects:
 		cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
     	#if len(rects) > 0:

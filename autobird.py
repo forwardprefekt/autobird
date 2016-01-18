@@ -18,17 +18,22 @@ while(True):
     ret, frame = cap.read()
     if (x > 5):
 	x = 0 
-    	rects = toppipe.detectMultiScale(frame, 1.3, 4, cv2.cv.CV_HAAR_SCALE_IMAGE, (20,20))
-    	if len(rects) > 0:
-		#cv2.rectangle(frame,rects);
-		print "booom!!!!";
-    		curpos = rects[0,0]
-		if (curpos < 220):
-			#ser.write('m')
-			print "m"
-		if (curpos > 280):
+    	#rects = toppipe.detectMultiScale(frame, 1.3, 4, cv2.cv.CV_HAAR_SCALE_IMAGE, (20,20))
+    	rects = toppipe.detectMultiScale(frame, 1.3, 5)
+	for (x,y,w,h) in faces:
+		img = cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
+    		roi_gray = gray[y:y+h, x:x+w]
+    		roi_color = img[y:y+h, x:x+w]
+    	#if len(rects) > 0:
+		##cv2.rectangle(frame,rects);
+		#print "booom!!!!";
+    		#curpos = rects[0,0]
+		#if (curpos < 220):
+			##ser.write('m')
+			#print "m"
+		#if (curpos > 280):
 			#ser.write('p')
-			print "p"
+			#print "p"
 		
     
     # Our operations on the frame come here

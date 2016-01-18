@@ -13,6 +13,8 @@ bird = cv2.CascadeClassifier("bird_cascade.csv")
 
 x = 1  #frame counter
 
+birddetect = 0
+
 while(True):
     x = x+1
     # Capture frame-by-frame
@@ -20,10 +22,39 @@ while(True):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     if (x > 5):
 	x = 0 
+	tempx = 0
+
+
+
+
     	#rects = bottompipe.detectMultiScale(gray, 1.3, 4, cv2.cv.CV_HAAR_SCALE_IMAGE, (20,20))
-    	rects = bottompipe.detectMultiScale(gray, 1.3, 4, cv2.cv.CV_HAAR_SCALE_IMAGE, (20,20))
+    	rects = bottompipe.detectMultiScale(gray, 10, 5)
+	firstcol = np.array(rects)
+	firstcol = np.sort(firstcol,0)
+	print firstcol
+
 	for (x,y,w,h) in rects:
-		cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
+
+		if tempx > 0:
+			if tempx + tempw > x + 50: #newcol
+				break;
+
+			if tempy + temph > y + 100:
+				curcolheight = tempy + temph
+				cv2.rectangle(frame,(tempx,tempy),(temph,tempw),(255,255,255),2)
+
+		tempx = x
+		tempy = y		
+		temph = h
+		tempw = w
+
+
+
+	
+	for (x,y,w,h) in rects:
+		cv2.rectangle(frame,(x,y),(x+w,y+h),(0,0,255),2)
+		
+		
 
     	rects = bird.detectMultiScale(gray, 1.3, 4, cv2.cv.CV_HAAR_SCALE_IMAGE, (20,20))
 	for (x,y,w,h) in rects:

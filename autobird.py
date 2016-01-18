@@ -16,10 +16,11 @@ while(True):
     x = x+1
     # Capture frame-by-frame
     ret, frame = cap.read()
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     if (x > 5):
 	x = 0 
-    	#rects = toppipe.detectMultiScale(frame, 1.3, 4, cv2.cv.CV_HAAR_SCALE_IMAGE, (20,20))
-    	rects = toppipe.detectMultiScale(frame, 1.3, 5)
+    	#rects = toppipe.detectMultiScale(gray, 1.3, 4, cv2.cv.CV_HAAR_SCALE_IMAGE, (20,20))
+    	rects = toppipe.detectMultiScale(gray, 1.3, 5)
 	for (x,y,w,h) in rects:
 		cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
     	#if len(rects) > 0:
@@ -38,7 +39,7 @@ while(True):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     
     # Display the resulting frame
-    cv2.imshow('frame',gray)
+    cv2.imshow('frame',frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 

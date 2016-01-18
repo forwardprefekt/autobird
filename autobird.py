@@ -8,7 +8,7 @@ import serial
 #ser = serial.Serial('/dev/tty1' ,9600)
 cap = cv2.VideoCapture(1)
 
-cascade = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
+toppipe = cv2.CascadeClassifier("toppipe_cascade.xml")
 
 x = 1  #frame counter
 
@@ -18,8 +18,10 @@ while(True):
     ret, frame = cap.read()
     if (x > 5):
 	x = 0 
-    	rects = cascade.detectMultiScale(frame, 1.3, 4, cv2.cv.CV_HAAR_SCALE_IMAGE, (20,20))
+    	rects = toppipe.detectMultiScale(frame, 1.3, 4, cv2.cv.CV_HAAR_SCALE_IMAGE, (20,20))
     	if len(rects) > 0:
+		#cv2.rectangle(frame,rects);
+		print "booom!!!!";
     		curpos = rects[0,0]
 		if (curpos < 220):
 			#ser.write('m')

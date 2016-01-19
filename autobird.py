@@ -8,9 +8,9 @@ import serial
 #ser = serial.Serial('/dev/tty1' ,9600)
 cap = cv2.VideoCapture(1)
 
-bottompipe = cv2.CascadeClassifier("bottompipe_cascade.csv")
+bottompipe = cv2.CascadeClassifier("screenpipe.csv")
 bird = cv2.CascadeClassifier("birdeye_cascade.csv")
-
+framenum=1
 x = 1  #frame counter
 
 birddetect = 0
@@ -19,13 +19,12 @@ while(True):
     x = x+1
     # Capture frame-by-frame
     ret, frame = cap.read()
+#    cv2.imwrite("snap" + str(framenum) + ".jpg", frame)
+    framenum += 1
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     if (x > 5):
 	x = 0 
 	tempx = 0
-
-
-
 
     	#rects = bottompipe.detectMultiScale(gray, 1.3, 4, cv2.cv.CV_HAAR_SCALE_IMAGE, (20,20))
     	rects = bottompipe.detectMultiScale(gray, 10, 5)

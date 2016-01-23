@@ -19,11 +19,11 @@ while(True):
     x = x+1
     # Capture frame-by-frame
     ret, frame = cap.read()
-#    cv2.imwrite("snap" + str(framenum) + ".jpg", frame)
-    framenum += 1
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    if (x > 5):
+    if (x > 2):
 	x = 0 
+	#cv2.imwrite("snap" + str(framenum) + ".jpg", frame)
+    	framenum += 1
 	tempx = 0
 
     	#rects = bottompipe.detectMultiScale(gray, 1.3, 4, cv2.cv.CV_HAAR_SCALE_IMAGE, (20,20))

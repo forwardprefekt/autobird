@@ -22,7 +22,7 @@ while(True):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     if (x > 2):
 	x = 0 
-	#cv2.imwrite("snap" + str(framenum) + ".jpg", frame)
+	#cv2.imwrite("./pics/snap" + str(framenum) + ".jpg", frame)
     	framenum += 1
 	tempx = 0
 

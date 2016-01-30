@@ -4,12 +4,12 @@ import time
 import serial
 
 
-#ser = serial.Serial('/dev/ttyACM0', 9600)
+ser = serial.Serial('/dev/ttyACM0', 9600)
 #ser = serial.Serial('/dev/tty1' ,9600)
 cap = cv2.VideoCapture(1)
 
 bottompipe = cv2.CascadeClassifier("screenpipe.csv")
-bird = cv2.CascadeClassifier("birdeye_cascade.csv")
+bird = cv2.CascadeClassifier("screenpipe.xml")
 framenum=1
 x = 1  #frame counter
 
@@ -76,8 +76,8 @@ while(True):
     
     # Display the resulting frame
     cv2.imshow('frame',frame)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+    if cv2.waitKey(1) & 0xFF == ord('t'):
+        ser.write('t')
 
 # When everything done, release the capture
 cap.release()
